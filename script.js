@@ -1,22 +1,20 @@
 function createFlexGrid() {
     const flexGrid = document.createElement('div');
     flexGrid.classList.add('flexGrid');
-    createRows();
+    createRows(flexGrid);
     document.querySelector('body').appendChild(flexGrid);
 }
 
-function createRows() {
+function createRows(flexGrid) {
     for (let i = 0; i < 16; i++) {
         const rowDiv = document.createElement('div');
         rowDiv.classList.add('flexRow');
-        rowDiv.id = `row${i}`;
-        createItems(i);
+        createItems(rowDiv);
         flexGrid.appendChild(rowDiv);
     }
 }
 
-function createItems(row) {
-    const rowDiv = document.querySelector(`#row${row}`);
+function createItems(rowDiv) {
     for (let i = 0; i < 16; i++) {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('flexItem');
