@@ -16,10 +16,12 @@ function createRows() {
 }
 
 function createItems(row) {
-    const rowDiv = doument.querySelector(`row${row}`);
+    const rowDiv = document.querySelector(`#row${row}`);
     for (let i = 0; i < 16; i++) {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('flexItem');
         rowDiv.appendChild(itemDiv);
     }
 }
+
+createFlexGrid();
