@@ -25,7 +25,11 @@ function createItems(rowDiv, items) {
         for (let i = 0; i < items; i++) {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('flexItem');
-            itemDiv.addEventListener('mouseover', () => changeColor(itemDiv));
+            itemDiv.setAttribute('data-brightness', 1.0);
+            itemDiv.addEventListener('mouseover', () => {
+                changeColor(itemDiv);
+                addDarkness(itemDiv);
+            })
             rowDiv.appendChild(itemDiv);
         }
     }
@@ -39,6 +43,14 @@ function changeColor(itemDiv) {
         randomHexColor += hex[Math.floor(Math.random() * hex.length)];
     }
     itemDiv.style.backgroundColor = randomHexColor;
+}
+
+function addDarkness(itemDiv) {
+    let brightness = itemDiv.getAttribute('data-brightness');
+    if (brightness > 0) {
+        itemDiv.dataset.brightness = (brightness * 10 - 1) / 10;
+        itemDiv.style.filter = `brightness(${itemDiv.dataset.brightness})`;
+    }
 }
 
 createFlexGrid();
